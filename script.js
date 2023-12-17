@@ -32,11 +32,9 @@ function swapConversion() {
     const inputPlaceholder = isBinaryMode ? 'Enter binary...' : 'Enter text...';
     document.getElementById('inputData').placeholder = inputPlaceholder;
 
-    const convertButton = document.getElementsByTagName('button')[0];
-    const swapButton = document.getElementsByTagName('button')[1]; // Get the second button (index 1)
+    const convertButton = document.getElementById('convertButton');
     
-    convertButton.innerText = isBinaryMode ? 'Convert to Text' : 'Convert to Binary';
-    swapButton.innerText = isBinaryMode ? 'Convert to Binary' : 'Convert to Text'; // Change the swap button text
+    convertButton.innerText = isBinaryMode ? 'Convert to Text' : 'Convert to Binary'; // Change the button text
 
     document.getElementById('output').innerText = ''; // Clear output when swapping
 }
