@@ -67,6 +67,12 @@
         let payloadKey = 'text'; // Default payload key
 
         if (isBinaryMode) {
+            // Check if the input contains only '0's and '1's
+            if (!/^[01\s]+$/.test(inputData)) {
+                document.getElementById('output').innerText = 'Not a valid binary input';
+                return;
+            }
+
             endpoint = 'https://binary-ascii-converter.glitch.me/binary-to-ascii';
             payloadKey = 'binary'; // Update payload key for binary mode
         }
