@@ -2,15 +2,93 @@
 <html>
 <head>
     <title>Binary/Text Converter</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #inputData {
+            width: 300px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        #convertButton,
+        #swapButton {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #output {
+            width: 300px;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
     <h1>Binary/Text Converter</h1>
     <input type="text" id="inputData" placeholder="Enter text...">
     <button id="convertButton" onclick="convert()">Convert to Binary</button>
-    <button onclick="swapConversion()">Swap</button>
+    <button id="swapButton" onclick="swapConversion()">Swap</button>
     <div id="output"></div>
 
-    <script src="scripts.js"></script>
+    <script>
+        let isBinaryMode = false;
+
+        function convert() {
+            const inputData = document.getElementById('inputData').value;
+            let endpoint = 'https://binary-ascii-converter.glitch.me/text-to-binary'; // Default endpoint for text-to-binary conversion
+
+            if (isBinaryMode) {
+                endpoint = 'https://binary-ascii-converter.glitch.me/binary-to-text'; // Endpoint for binary-to-text conversion
+            }
+
+            fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: inputData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const result = isBinaryMode ? data.ascii_text : data.binary_text;
+                document.getElementById('output').innerText = result || data.error || 'Conversion failed';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('output').innerText = 'Error occurred';
+            });
+        }
+
+        function swapConversion() {
+            isBinaryMode = !isBinaryMode;
+
+            const inputPlaceholder = isBinaryMode ? 'Enter binary...' : 'Enter text...';
+            document.getElementById('inputData').placeholder = inputPlaceholder;
+
+            const convertButton = document.getElementById('convertButton');
+            convertButton.innerText = isBinaryMode ? 'Convert to Text' : 'Convert to Binary'; // Change the main conversion button text
+
+            document.getElementById('output').innerText = ''; // Clear output when swapping
+        }
+    </script>
 </body>
 </html>
