@@ -3,42 +3,51 @@
 <head>
     <title>Binary/Text Converter</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Reset default margin and padding */
+        body, h1, input, button, div {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+        }
+
+        /* Basic styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding-top: 50px;
         }
 
         h1 {
-            text-align: center;
-            margin-bottom: 20px;
+            color: #333;
         }
 
-        #inputData {
-            width: 300px;
+        input[type="text"],
+        button {
             padding: 8px;
-            margin-bottom: 10px;
+            margin: 10px;
+            font-size: 16px;
         }
 
-        #convertButton,
-        #swapButton {
-            padding: 10px 20px;
-            margin: 5px;
+        button {
             cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
 
         #output {
-            width: 300px;
-            padding: 10px;
             margin-top: 20px;
-            border: 1px solid #ccc;
+            padding: 10px;
             background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            min-height: 50px;
         }
     </style>
 </head>
@@ -46,7 +55,7 @@
     <h1>Binary/Text Converter</h1>
     <input type="text" id="inputData" placeholder="Enter text...">
     <button id="convertButton" onclick="convert()">Convert to Binary</button>
-    <button id="swapButton" onclick="swapConversion()">Swap</button>
+    <button onclick="swapConversion()">Swap</button>
     <div id="output"></div>
 
     <script>
