@@ -2,10 +2,10 @@ let isBinaryMode = false;
 
 function convert() {
     const inputData = document.getElementById('inputData').value;
-    let endpoint = 'https://binary-ascii-converter.glitch.me/text-to-binary'; // Endpoint for text-to-binary conversion
+    let endpoint = 'https://binary-ascii-converter.glitch.me/text-to-binary'; // Default endpoint for text-to-binary conversion
 
     if (isBinaryMode) {
-        endpoint = 'https://binary-ascii-converter.glitch.me/binary-to-ascii'; // Endpoint for binary-to-text conversion
+        endpoint = 'https://binary-ascii-converter.glitch.me/binary-to-text'; // Endpoint for binary-to-text conversion
     }
 
     fetch(endpoint, {
