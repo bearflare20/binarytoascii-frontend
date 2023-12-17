@@ -33,7 +33,6 @@ function swapConversion() {
     document.getElementById('inputData').placeholder = inputPlaceholder;
 
     const convertButton = document.getElementById('convertButton');
-
     convertButton.innerText = isBinaryMode ? 'Convert to Text' : 'Convert to Binary'; // Change the main conversion button text
 
     document.getElementById('output').innerText = ''; // Clear output when swapping
